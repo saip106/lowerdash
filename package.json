@@ -1,0 +1,24 @@
+{
+  "name": "lowerdash",
+  "version": "0.0.0",
+  "description": "lowerdash\r =========",
+  "main": "lowerdash.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saip106/lowerdash.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saip106/lowerdash/issues"
+  },
+  "homepage": "https://github.com/saip106/lowerdash",
+  "devDependencies": {
+    "karma": "^0.12.19",
+    "karma-jasmine": "^0.1.5",
+    "karma-chrome-launcher": "^0.1.4"
+  }
+}
