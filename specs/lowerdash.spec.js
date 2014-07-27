@@ -1,5 +1,6 @@
 describe('dummy spec', function () {
     it('should run the test', function () {
-        expect(true).toBeTruthy();
+        var array = [0,1,2];
+        
     });
 })
