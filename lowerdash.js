@@ -75,8 +75,32 @@
 		var secondParam = arguments[1];
 
 		if (typeof secondParam === 'function') {
-			for(var i = 0; i < array.length; i++) {
+			for (var i = 0; i < array.length; i++) {
 				if (secondParam(array[i])) {
+					return i;
+				}
+			}
+		}
+		else if (typeof secondParam === 'object') {
+			for (var i = 0; i < array.length; i++) {
+				var isValidForAllProperties = false;
+				for (var property in secondParam) {
+					if (secondParam.hasOwnProperty(property) && array[i][property] === secondParam[property]) {
+						isValidForAllProperties = true
+					}
+					else {
+						isValidForAllProperties = false;
+						break;
+					}
+				}
+				if (isValidForAllProperties) {
+					return i;
+				}
+			}
+		}
+		else if (typeof secondParam === 'string') {
+			for (var i = 0; i < array.length; i++) {
+				if (array[i][secondParam]) {
 					return i;
 				}
 			}
