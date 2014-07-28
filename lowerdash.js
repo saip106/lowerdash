@@ -20,6 +20,7 @@
         root._ = _;
     }
 
+    //removed falsey values from an array
     _.compact = function (array) {
         var result = [];
         for(var i = 0; i < array.length; i++) {
@@ -30,6 +31,39 @@
         return result;
     }
 
+    //IE8 and older do not contain indexOf hence this
+    var indexOf = function(needle) {
+        if(typeof Array.prototype.indexOf === 'function') {
+            indexOf = Array.prototype.indexOf;
+        } else {
+            indexOf = function(needle) {
+                var i = -1, index = -1;
+
+                for(i = 0; i < this.length; i++) {
+                    if(this[i] === needle) {
+                        index = i;
+                        break;
+                    }
+                }
+
+                return index;
+            };
+        }
+
+        return indexOf.call(this, needle);
+    };
+
+    _.difference = function (array) {
+        var result = [];
+        var args = Array.prototype.slice.call(arguments);
+        var valuesToBeRemoved = args.splice(1);
+        for(var i = 0; i < array.length; i++) {
+            if (indexOf.call(valuesToBeRemoved, array[i]) === -1) {
+                result[result.length] = array[i];
+            }
+        }
+        return result;
+    }
 
     // AMD registration happens at the end for compatibility with AMD loaders
     // that may not enforce next-turn semantics on modules. Even though general
