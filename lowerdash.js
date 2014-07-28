@@ -55,6 +55,9 @@
 
     _.difference = function (array) {
         var result = [];
+
+        //arguments looks like an array but is not one except for the length property,
+        //hence we are converting it to array here
         var args = Array.prototype.slice.call(arguments);
         var valuesToBeRemoved = args.splice(1);
         for(var i = 0; i < array.length; i++) {
