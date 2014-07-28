@@ -27,4 +27,16 @@ describe('underscore', function () {
         });
     });
 
+	describe('when finding index of values that satisfy a given condition', function () {
+		it('should return the first matching index', function () {
+			var array = [1, 2, 3, 4, 5];
+			var index = _.findIndex(array, function (element) {
+				return element === 2;
+			});
+
+			expect(index).toEqual(1);
+		});
+	});
+
+
 })

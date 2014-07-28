@@ -53,6 +53,7 @@
         return indexOf.call(this, needle);
     };
 
+	//removed values from the given array that match ===
     _.difference = function (array) {
         var result = [];
 
@@ -67,6 +68,21 @@
         }
         return result;
     }
+
+	//similar to find but instead returns the index of the first match
+	_.findIndex = function (array) {
+
+		var secondParam = arguments[1];
+
+		if (typeof secondParam === 'function') {
+			for(var i = 0; i < array.length; i++) {
+				if (secondParam(array[i])) {
+					return i;
+				}
+			}
+		}
+		return -1;
+	}
 
     // AMD registration happens at the end for compatibility with AMD loaders
     // that may not enforce next-turn semantics on modules. Even though general
