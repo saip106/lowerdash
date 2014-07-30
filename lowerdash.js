@@ -69,44 +69,83 @@
         return result;
     }
 
-	//similar to find but instead returns the index of the first match
-	_.findIndex = function (array) {
+	//similar to find but instead returns the index of the last match
+    _.findIndex = function (array) {
 
-		var secondParam = arguments[1];
+        var secondParam = arguments[1];
 
-		if (typeof secondParam === 'function') {
-			for (var i = 0; i < array.length; i++) {
-				if (secondParam(array[i])) {
-					return i;
-				}
-			}
-		}
-		else if (typeof secondParam === 'object') {
-			for (var i = 0; i < array.length; i++) {
-				var isValidForAllProperties = false;
-				for (var property in secondParam) {
-					if (secondParam.hasOwnProperty(property) && array[i][property] === secondParam[property]) {
-						isValidForAllProperties = true
-					}
-					else {
-						isValidForAllProperties = false;
-						break;
-					}
-				}
-				if (isValidForAllProperties) {
-					return i;
-				}
-			}
-		}
-		else if (typeof secondParam === 'string') {
-			for (var i = 0; i < array.length; i++) {
-				if (array[i][secondParam]) {
-					return i;
-				}
-			}
-		}
-		return -1;
-	}
+        if (typeof secondParam === 'function') {
+            for (var i = 0; i < array.length; i++) {
+                if (secondParam(array[i])) {
+                    return i;
+                }
+            }
+        }
+        else if (typeof secondParam === 'object') {
+            for (var i = 0; i < array.length; i++) {
+                var isValidForAllProperties = false;
+                for (var property in secondParam) {
+                    if (secondParam.hasOwnProperty(property) && array[i][property] === secondParam[property]) {
+                        isValidForAllProperties = true
+                    }
+                    else {
+                        isValidForAllProperties = false;
+                        break;
+                    }
+                }
+                if (isValidForAllProperties) {
+                    return i;
+                }
+            }
+        }
+        else if (typeof secondParam === 'string') {
+            for (var i = 0; i < array.length; i++) {
+                if (array[i][secondParam]) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    //similar to find but instead returns the index of the first match
+    _.findLastIndex = function (array) {
+
+        var secondParam = arguments[1];
+
+        if (typeof secondParam === 'function') {
+            for (var i = array.length - 1; i >= 0; i--) {
+                if (secondParam(array[i])) {
+                    return i;
+                }
+            }
+        }
+        else if (typeof secondParam === 'object') {
+            for (var i = array.length - 1; i >= 0; i--) {
+                var isValidForAllProperties = false;
+                for (var property in secondParam) {
+                    if (secondParam.hasOwnProperty(property) && array[i][property] === secondParam[property]) {
+                        isValidForAllProperties = true
+                    }
+                    else {
+                        isValidForAllProperties = false;
+                        break;
+                    }
+                }
+                if (isValidForAllProperties) {
+                    return i;
+                }
+            }
+        }
+        else if (typeof secondParam === 'string') {
+            for (var i = array.length - 1; i >= 0; i--) {
+                if (array[i][secondParam]) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
 
     // AMD registration happens at the end for compatibility with AMD loaders
     // that may not enforce next-turn semantics on modules. Even though general

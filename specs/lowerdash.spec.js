@@ -29,7 +29,7 @@ describe('underscore', function () {
 
 	describe('when finding index of item in an array', function () {
 
-		var characters = [];
+		var characters;
 
 		beforeEach(function () {
 			characters = [
@@ -84,4 +84,61 @@ describe('underscore', function () {
 			});
 		});
 	});
+
+    describe('when finding last index of item in an array', function () {
+
+        var characters;
+
+        beforeEach(function () {
+            characters = [
+                { 'name': 'barney',  'age': 36, 'blocked': false },
+                { 'name': 'fred',    'age': 40, 'blocked': true },
+                { 'name': 'pebbles', 'age': 1,  'blocked': false }
+            ];
+        });
+
+        describe('that takes a function as a second param', function () {
+
+            describe('that satisfy a given function condition', function () {
+                it('should return the last matching index', function () {
+                    var index = _.findLastIndex(characters, function(chr) {
+                        return chr.age > 20;
+                    });
+                    expect(index).toEqual(1);
+                });
+            });
+
+            describe('that takes a object as a second param', function () {
+
+                describe('and that object has one field', function () {
+                    it('should return the last matching index', function () {
+                        var index = _.findIndex(characters, { 'age': 36 });
+                        expect(index).toEqual(0);
+                    });
+                });
+
+                describe('and that object has multiple fields', function () {
+                    it('should return the last matching index', function () {
+                        var index = _.findIndex(characters, { 'age': 36, 'name': 'fred' });
+                        expect(index).toEqual(-1);
+                    });
+                });
+
+                describe('and that object has no fields', function () {
+                    it('should return the last matching index', function () {
+                        var index = _.findIndex(characters, { });
+                        expect(index).toEqual(-1);
+                    });
+                });
+
+            });
+
+            describe('that takes a field name as a second param', function () {
+                it('should return the last matching index', function () {
+                    var index = _.findIndex(characters, 'blocked');
+                    expect(index).toEqual(1);
+                });
+            });
+        });
+    });
 });
