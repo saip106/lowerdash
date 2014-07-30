@@ -148,8 +148,23 @@
     }
 
     _.first = function (array) {
-        if (array.length > 0) {
-            return array[0];
+
+        var secondParam = arguments[1];
+
+        if (secondParam === undefined) {
+            if (array.length > 0) {
+                return array[0];
+            }
+        }
+        else if (typeof secondParam === 'number') {
+            var result = [];
+            if (array.length > 0) {
+                for (var j = 0; j < secondParam; j++) {
+                    if (array.length > j)
+                    result.push(array[j]);
+                }
+                return result;
+            }
         }
     }
 

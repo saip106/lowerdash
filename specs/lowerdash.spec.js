@@ -1,6 +1,5 @@
 describe('lowerdash', function () {
 
-
     describe('initialization', function () {
         it('should be defined', function () {
             expect(_).toBeDefined();
@@ -149,5 +148,17 @@ describe('lowerdash', function () {
             var result = _.first(array);
             expect(result).toEqual(1);
         });
+    });
+
+    describe('when finding the first match in an array', function () {
+        var array = [1,2,3,4];
+
+        describe('and the second param is a number', function () {
+            it('should return an array of length specified', function () {
+                var result = _.first(array, 2);
+                expect(result).toEqual([1, 2]);
+            });
+        });
+
     });
 });
