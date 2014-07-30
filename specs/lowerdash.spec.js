@@ -142,4 +142,12 @@ describe('lowerdash', function () {
             });
         });
     });
+
+    describe('when finding the first element of an array', function () {
+        var array = [1,2,3,4];
+        it('should return the first element', function () {
+            var result = _.first(array);
+            expect(result).toEqual(1);
+        });
+    });
 });
