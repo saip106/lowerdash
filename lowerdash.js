@@ -1,4 +1,6 @@
-(function () {
+'use strict'
+
+;(function () {
 
     // Establish the root object, `window` in the browser, or `exports` on the server.
     var root = this;
@@ -6,7 +8,7 @@
 
     var _ = function () {
 
-    }
+    };
 
     // Export the Underscore object for **Node.js**, with
     // backwards-compatibility for the old `require()` API. If we're in
@@ -29,7 +31,7 @@
             }
         }
         return result;
-    }
+    };
 
     //IE8 and older do not contain indexOf hence this
     var indexOf = function(needle) {
@@ -37,7 +39,7 @@
             indexOf = Array.prototype.indexOf;
         } else {
             indexOf = function(needle) {
-                var i = -1, index = -1;
+                var index = -1;
 
                 for(i = 0; i < this.length; i++) {
                     if(this[i] === needle) {
@@ -67,25 +69,23 @@
             }
         }
         return result;
-    }
+    };
 
 	//similar to find but instead returns the index of the last match
-    _.findIndex = function (array) {
+    _.findIndex = function (array, secondArgument) {
 
-        var secondParam = arguments[1];
-
-        if (typeof secondParam === 'function') {
+        if (typeof secondArgument === 'function') {
             for (var i = 0; i < array.length; i++) {
-                if (secondParam(array[i])) {
+                if (secondArgument(array[i])) {
                     return i;
                 }
             }
         }
-        else if (typeof secondParam === 'object') {
+        else if (typeof secondArgument === 'object') {
             for (var i = 0; i < array.length; i++) {
                 var isValidForAllProperties = false;
-                for (var property in secondParam) {
-                    if (secondParam.hasOwnProperty(property) && array[i][property] === secondParam[property]) {
+                for (var property in secondArgument) {
+                    if (secondArgument.hasOwnProperty(property) && array[i][property] === secondArgument[property]) {
                         isValidForAllProperties = true
                     }
                     else {
@@ -98,33 +98,31 @@
                 }
             }
         }
-        else if (typeof secondParam === 'string') {
+        else if (typeof secondArgument === 'string') {
             for (var i = 0; i < array.length; i++) {
-                if (array[i][secondParam]) {
+                if (array[i][secondArgument]) {
                     return i;
                 }
             }
         }
         return -1;
-    }
+    };
 
     //similar to find but instead returns the index of the first match
-    _.findLastIndex = function (array) {
+    _.findLastIndex = function (array, secondArgument) {
 
-        var secondParam = arguments[1];
-
-        if (typeof secondParam === 'function') {
+        if (typeof secondArgument === 'function') {
             for (var i = array.length - 1; i >= 0; i--) {
-                if (secondParam(array[i])) {
+                if (secondArgument(array[i])) {
                     return i;
                 }
             }
         }
-        else if (typeof secondParam === 'object') {
+        else if (typeof secondArgument === 'object') {
             for (var i = array.length - 1; i >= 0; i--) {
                 var isValidForAllProperties = false;
-                for (var property in secondParam) {
-                    if (secondParam.hasOwnProperty(property) && array[i][property] === secondParam[property]) {
+                for (var property in secondArgument) {
+                    if (secondArgument.hasOwnProperty(property) && array[i][property] === secondArgument[property]) {
                         isValidForAllProperties = true
                     }
                     else {
@@ -137,36 +135,34 @@
                 }
             }
         }
-        else if (typeof secondParam === 'string') {
+        else if (typeof secondArgument === 'string') {
             for (var i = array.length - 1; i >= 0; i--) {
-                if (array[i][secondParam]) {
+                if (array[i][secondArgument]) {
                     return i;
                 }
             }
         }
         return -1;
-    }
+    };
 
-    _.first = function (array) {
+    _.first = function (array, secondArgument) {
 
-        var secondParam = arguments[1];
-
-        if (secondParam === undefined) {
+        if (secondArgument === undefined) {
             if (array.length > 0) {
                 return array[0];
             }
         }
-        else if (typeof secondParam === 'number') {
+        else if (typeof secondArgument === 'number') {
             var result = [];
             if (array.length > 0) {
-                for (var j = 0; j < secondParam; j++) {
+                for (var j = 0; j < secondArgument; j++) {
                     if (array.length > j)
                     result.push(array[j]);
                 }
                 return result;
             }
         }
-    }
+    };
 
     // AMD registration happens at the end for compatibility with AMD loaders
     // that may not enforce next-turn semantics on modules. Even though general
@@ -181,4 +177,4 @@
         });
     }
 
-}.call(this));
+}).call(this);

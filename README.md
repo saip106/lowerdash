@@ -9,7 +9,9 @@ Getting up and running
 ======================
 Pre-requisites
 --------------
- + Node (npm comes along with it)
+ + nodejs 
+ + npm (comes with node)
+ + git
  
 Setting up dev environment
 --------------------------

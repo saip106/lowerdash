@@ -1,3 +1,5 @@
+'use strict'
+
 describe('lowerdash', function () {
 
     describe('initialization', function () {
