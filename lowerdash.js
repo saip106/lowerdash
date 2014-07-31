@@ -5,7 +5,6 @@
     // Establish the root object, `window` in the browser, or `exports` on the server.
     var root = this;
 
-
     var _ = function () {
 
     };
@@ -41,7 +40,7 @@
             indexOf = function(needle) {
                 var index = -1;
 
-                for(i = 0; i < this.length; i++) {
+                for(var i = 0; i < this.length; i++) {
                     if(this[i] === needle) {
                         index = i;
                         break;
@@ -51,7 +50,6 @@
                 return index;
             };
         }
-
         return indexOf.call(this, needle);
     };
 
