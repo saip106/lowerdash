@@ -177,6 +177,19 @@
                 }
             }
         }
+        else if (typeof secondArgument === 'object') {
+            for (var i = 0; i < array.length; i++) {
+                var isAMatch = true;
+                for (var key in secondArgument) {
+                    if (array[i][key] !== secondArgument[key]) {
+                        isAMatch = false;
+                    }
+                }
+                if (isAMatch) {
+                    return array[i];
+                }
+            }
+        }
     };
 
     // AMD registration happens at the end for compatibility with AMD loaders

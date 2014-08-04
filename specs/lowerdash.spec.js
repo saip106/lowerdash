@@ -176,8 +176,15 @@ describe('lowerdash', function () {
         ];
 
         describe('and the second argument is a string', function () {
-            it('should return the first truthy value with field name as second argument', function () {
+            it('should return the first true value with field name as second argument', function () {
                 var result = _.first(characters, 'blocked');
+                expect(result).toEqual({ 'name': 'barney',  'blocked': true,  'employer': 'slate' });
+            });
+        });
+
+        describe('and the second argument is an object', function () {
+            it('should return the first value with same field(s) as second argument', function () {
+                var result = _.first(characters, { 'employer' : 'slate' });
                 expect(result).toEqual({ 'name': 'barney',  'blocked': true,  'employer': 'slate' });
             });
         });
