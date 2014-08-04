@@ -170,6 +170,13 @@
             }
             return result;
         }
+        else if (typeof secondArgument === 'string') {
+            for (var i = 0; i < array.length; i++) {
+                if (array[i][secondArgument] === true) {
+                    return array[i];
+                }
+            }
+        }
     };
 
     // AMD registration happens at the end for compatibility with AMD loaders

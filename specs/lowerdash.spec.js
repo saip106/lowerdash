@@ -150,24 +150,35 @@ describe('lowerdash', function () {
             var result = _.first(array);
             expect(result).toEqual(1);
         });
-    });
 
-    describe('when finding the first match in an array', function () {
-        var array = [1,2,3,4];
-
-        describe('and the second param is a number', function () {
+        describe('and the second argument is a number', function () {
             it('should return an array of length specified', function () {
                 var result = _.first(array, 2);
                 expect(result).toEqual([1, 2]);
             });
         });
 
-        describe('and the second param is a function', function () {
+        describe('and the second argument is a function', function () {
             it('should return values that satisfy the function condition', function () {
                 var result = _.first(array, function (num) {
                     return num < 3;
                 });
                 expect(result).toEqual([1, 2]);
+            });
+        });
+    });
+
+    describe('when finding the first match in an array', function () {
+        var characters = [
+            { 'name': 'barney',  'blocked': true,  'employer': 'slate' },
+            { 'name': 'fred',    'blocked': false, 'employer': 'slate' },
+            { 'name': 'pebbles', 'blocked': true,  'employer': 'na' }
+        ];
+
+        describe('and the second argument is a string', function () {
+            it('should return the first truthy value with field name as second argument', function () {
+                var result = _.first(characters, 'blocked');
+                expect(result).toEqual({ 'name': 'barney',  'blocked': true,  'employer': 'slate' });
             });
         });
 
