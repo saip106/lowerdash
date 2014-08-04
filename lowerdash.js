@@ -192,21 +192,31 @@
         }
     };
 
+
+
     _.flatten = function (array, shouldDoShallowFlattening) {
 
         var result = [];
         for(var i = 0; i < array.length; i++) {
-            console.log('is type array: ' + array[i] instanceof Array);
-            if(Array.isArray(array[i])) {
-                for(var j = 0; j < array[i].length; j++) {
-                    result.push(array[i][j]);
-                }
-            }
-            else {
-                result.push(array[i]);
-            }
+            recursiveFlatten(array[i], result, shouldDoShallowFlattening);
         }
         return result;
+    }
+
+    function recursiveFlatten (element, result, shouldDoShallowFlattening) {
+        if(Array.isArray(element)) {
+            for(var j = 0; j < element.length; j++) {
+                if(shouldDoShallowFlattening) {
+                    result.push(element[j]);
+                }
+                else {
+                    recursiveFlatten(element[j], result);
+                }
+            }
+        }
+        else {
+            result.push(element);
+        }
     }
 
     // AMD registration happens at the end for compatibility with AMD loaders
