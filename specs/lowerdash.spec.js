@@ -162,5 +162,14 @@ describe('lowerdash', function () {
             });
         });
 
+        describe('and the second param is a function', function () {
+            it('should return values that satisfy the function condition', function () {
+                var result = _.first(array, function (num) {
+                    return num < 3;
+                });
+                expect(result).toEqual([1, 2]);
+            });
+        });
+
     });
 });

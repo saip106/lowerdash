@@ -5,9 +5,7 @@
     // Establish the root object, `window` in the browser, or `exports` on the server.
     var root = this;
 
-    var _ = function () {
-
-    };
+    var _ = function () {};
 
     // Export the Underscore object for **Node.js**, with
     // backwards-compatibility for the old `require()` API. If we're in
@@ -159,6 +157,18 @@
                 }
                 return result;
             }
+        }
+        else if (typeof secondArgument === 'function') {
+            var result = [];
+            for (var i = 0; i < array.length; i++) {
+                if (secondArgument(array[i])) {
+                    result.push(array[i]);
+                }
+                else {
+                    return result;
+                }
+            }
+            return result;
         }
     };
 
