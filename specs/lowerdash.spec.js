@@ -190,4 +190,11 @@ describe('lowerdash', function () {
         });
 
     });
+
+    describe('when flattening an array', function () {
+        it('should do a shallow flattening if second argument is true', function () {
+            var result = _.flatten([1, [2], [3, [[4]]]], true);
+            expect(result).toEqual([1, 2, 3, [[4]]]);
+        });
+    });
 });

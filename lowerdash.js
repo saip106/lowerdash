@@ -192,6 +192,23 @@
         }
     };
 
+    _.flatten = function (array, shouldDoShallowFlattening) {
+
+        var result = [];
+        for(var i = 0; i < array.length; i++) {
+            console.log('is type array: ' + array[i] instanceof Array);
+            if(Array.isArray(array[i])) {
+                for(var j = 0; j < array[i].length; j++) {
+                    result.push(array[i][j]);
+                }
+            }
+            else {
+                result.push(array[i]);
+            }
+        }
+        return result;
+    }
+
     // AMD registration happens at the end for compatibility with AMD loaders
     // that may not enforce next-turn semantics on modules. Even though general
     // practice for AMD registration is to be anonymous, underscore registers
