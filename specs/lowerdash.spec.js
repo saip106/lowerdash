@@ -244,4 +244,11 @@ describe('lowerdash', function () {
             expect(result).toBeFalsy();
         });
     });
+
+    describe('when finding index of an object', function () {
+        it('should return the index of first occurance', function () {
+            var result = _.indexOf([1, 2, 3, 1, 2, 3], 2);
+            expect(result).toEqual(1);
+        });
+    });
 });

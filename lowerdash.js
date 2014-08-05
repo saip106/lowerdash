@@ -228,6 +228,15 @@
         return false;
     }
 
+    _.indexOf = function (array, element) {
+        for(var i = 0; i < array.length; i++) {
+            if(array[i] === element) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     function recursiveFlatten (element, result, shouldDoShallowFlattening) {
         if(Array.isArray(element)) {
             for(var j = 0; j < element.length; j++) {
