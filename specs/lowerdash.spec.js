@@ -4,14 +4,14 @@ describe('lowerdash', function () {
 
     describe('initialization', function () {
         it('should be defined', function () {
-            expect(_).toBeDefined();
+            expect(__).toBeDefined();
         });
     });
 
     describe('when compacting an array', function () {
         it('should remove falsey values from the array', function () {
             var array = [0, 1, 2, false, '', NaN, null, undefined];
-            expect(_.compact(array)).toEqual([1, 2]);
+            expect(__.compact(array)).toEqual([1, 2]);
         });
     });
 
@@ -19,13 +19,13 @@ describe('lowerdash', function () {
         it('should remove the values specified', function () {
             var foo = { bar : 123 };
             var array = [1, 2, 3, foo];
-            expect(_.difference(array, foo)).toEqual([1, 2, 3]);
+            expect(__.difference(array, foo)).toEqual([1, 2, 3]);
         });
 
         it('should not remove values that are not equal by ===', function () {
             var foo = { bar : 123 };
             var array = [1, 2, 3, { bar : 123}];
-            expect(_.difference(array, foo)).toEqual([1, 2, 3, { bar : 123}]);
+            expect(__.difference(array, foo)).toEqual([1, 2, 3, { bar : 123}]);
         });
     });
 
@@ -45,7 +45,7 @@ describe('lowerdash', function () {
 
             describe('that satisfy a given function condition', function () {
                 it('should return the first matching index', function () {
-                    var index = _.findIndex(characters, function (chr) {
+                    var index = __.findIndex(characters, function (chr) {
                         return chr.age < 20;
                     });
                     expect(index).toEqual(2);
@@ -58,21 +58,21 @@ describe('lowerdash', function () {
 
             describe('and that object has one field', function () {
                 it('should return the first matching index', function () {
-                    var index = _.findIndex(characters, { 'age' : 36 });
+                    var index = __.findIndex(characters, { 'age' : 36 });
                     expect(index).toEqual(0);
                 });
             });
 
             describe('and that object has multiple fields', function () {
                 it('should return the first matching index', function () {
-                    var index = _.findIndex(characters, { 'age' : 36, 'name' : 'fred' });
+                    var index = __.findIndex(characters, { 'age' : 36, 'name' : 'fred' });
                     expect(index).toEqual(-1);
                 });
             });
 
             describe('and that object has no fields', function () {
                 it('should return the first matching index', function () {
-                    var index = _.findIndex(characters, { });
+                    var index = __.findIndex(characters, { });
                     expect(index).toEqual(-1);
                 });
             });
@@ -81,7 +81,7 @@ describe('lowerdash', function () {
 
         describe('that takes a field name as a second param', function () {
             it('should return the first matching index', function () {
-                var index = _.findIndex(characters, 'blocked');
+                var index = __.findIndex(characters, 'blocked');
                 expect(index).toEqual(1);
             });
         });
@@ -103,7 +103,7 @@ describe('lowerdash', function () {
 
             describe('that satisfy a given function condition', function () {
                 it('should return the last matching index', function () {
-                    var index = _.findLastIndex(characters, function (chr) {
+                    var index = __.findLastIndex(characters, function (chr) {
                         return chr.age > 20;
                     });
                     expect(index).toEqual(1);
@@ -114,21 +114,21 @@ describe('lowerdash', function () {
 
                 describe('and that object has one field', function () {
                     it('should return the last matching index', function () {
-                        var index = _.findIndex(characters, { 'age' : 36 });
+                        var index = __.findIndex(characters, { 'age' : 36 });
                         expect(index).toEqual(0);
                     });
                 });
 
                 describe('and that object has multiple fields', function () {
                     it('should return the last matching index', function () {
-                        var index = _.findIndex(characters, { 'age' : 36, 'name' : 'fred' });
+                        var index = __.findIndex(characters, { 'age' : 36, 'name' : 'fred' });
                         expect(index).toEqual(-1);
                     });
                 });
 
                 describe('and that object has no fields', function () {
                     it('should return the last matching index', function () {
-                        var index = _.findIndex(characters, { });
+                        var index = __.findIndex(characters, { });
                         expect(index).toEqual(-1);
                     });
                 });
@@ -137,7 +137,7 @@ describe('lowerdash', function () {
 
             describe('that takes a field name as a second param', function () {
                 it('should return the last matching index', function () {
-                    var index = _.findIndex(characters, 'blocked');
+                    var index = __.findIndex(characters, 'blocked');
                     expect(index).toEqual(1);
                 });
             });
@@ -147,20 +147,20 @@ describe('lowerdash', function () {
     describe('when finding the first element of an array', function () {
         var array = [1,2,3,4];
         it('should return the first element', function () {
-            var result = _.first(array);
+            var result = __.first(array);
             expect(result).toEqual(1);
         });
 
         describe('and the second argument is a number', function () {
             it('should return an array of length specified', function () {
-                var result = _.first(array, 2);
+                var result = __.first(array, 2);
                 expect(result).toEqual([1, 2]);
             });
         });
 
         describe('and the second argument is a function', function () {
             it('should return values that satisfy the function condition', function () {
-                var result = _.first(array, function (num) {
+                var result = __.first(array, function (num) {
                     return num < 3;
                 });
                 expect(result).toEqual([1, 2]);
@@ -177,14 +177,14 @@ describe('lowerdash', function () {
 
         describe('and the second argument is a string', function () {
             it('should return the first true value with field name as second argument', function () {
-                var result = _.first(characters, 'blocked');
+                var result = __.first(characters, 'blocked');
                 expect(result).toEqual({ 'name': 'barney',  'blocked': true,  'employer': 'slate' });
             });
         });
 
         describe('and the second argument is an object', function () {
             it('should return the first value with same field(s) as second argument', function () {
-                var result = _.first(characters, { 'employer' : 'slate' });
+                var result = __.first(characters, { 'employer' : 'slate' });
                 expect(result).toEqual({ 'name': 'barney',  'blocked': true,  'employer': 'slate' });
             });
         });
@@ -193,12 +193,12 @@ describe('lowerdash', function () {
 
     describe('when flattening an array', function () {
         it('should do shallow flattening if second argument is true', function () {
-            var result = _.flatten([1, [2], [3, [[4]]]], true);
+            var result = __.flatten([1, [2], [3, [[4]]]], true);
             expect(result).toEqual([1, 2, 3, [[4]]]);
         });
 
         it('should do deep flattening', function () {
-            var result = _.flatten([1, [2], [3, [[4]]]]);
+            var result = __.flatten([1, [2], [3, [[4]]]]);
             expect(result).toEqual([1, 2, 3, 4]);
         });
 
@@ -209,7 +209,7 @@ describe('lowerdash', function () {
             ];
 
             it('should pluck the property specified and then flatten the array', function () {
-                var result = _.flatten(characters, 'pets');
+                var result = __.flatten(characters, 'pets');
                 expect(result).toEqual(['hoppy', 'baby puss', 'dino']);
             });
         });
@@ -221,7 +221,7 @@ describe('lowerdash', function () {
                 { 'name': 'barney', 'age': 30, 'pets': ['hoppy'] },
                 { 'name': 'fred',   'age': 40, 'pets': ['baby puss', 'dino'] }
             ];
-            var result = _.pluck(characters, 'name');
+            var result = __.pluck(characters, 'name');
             expect(result).toEqual(['barney', 'fred']);
         });
     });
@@ -231,28 +231,28 @@ describe('lowerdash', function () {
             var foo = {
                 'bar' : 'baz'
             }
-            var result = _.has(foo, 'bar');
+            var result = __.has(foo, 'bar');
             expect(result).toBeTruthy();
         });
 
         it('should not check for the field on the object prototype chain', function () {
             var foo = {
                 'bar' : 'baz'
-            }
-            foo.__proto__.goofy = 'crazy';
-            var result = _.has(foo, 'goofy');
+            };
+            Object.getPrototypeOf(foo).goofy = 'crazy';
+            var result = __.has(foo, 'goofy');
             expect(result).toBeFalsy();
         });
     });
 
     describe('when finding index of an object', function () {
-        it('should return the index of first occurance', function () {
-            var result = _.indexOf([1, 2, 3, 1, 2, 3], 2);
+        it('should return the index of first occurrence', function () {
+            var result = __.indexOf([1, 2, 3, 1, 2, 3], 2);
             expect(result).toEqual(1);
         });
 
         it('should return the index of first match after from index specified', function () {
-            var result = _.indexOf([1, 2, 3, 1, 2, 3], 2, 3);
+            var result = __.indexOf([1, 2, 3, 1, 2, 3], 2, 3);
             expect(result).toEqual(4);
         });
     });

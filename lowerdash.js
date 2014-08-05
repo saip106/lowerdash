@@ -5,22 +5,22 @@
     // Establish the root object, `window` in the browser, or `exports` on the server.
     var root = this;
 
-    var _ = function () {};
+    var __ = function () {};
 
     // Export the Underscore object for **Node.js**, with
     // backwards-compatibility for the old `require()` API. If we're in
-    // the browser, add `_` as a global object.
+    // the browser, add `__` as a global object.
     if (typeof exports !== 'undefined') {
         if (typeof module !== 'undefined' && module.exports) {
-            exports = module.exports = _;
+            exports = module.exports = __;
         }
-        exports._ = _;
+        exports.__ = __;
     } else {
-        root._ = _;
+        root.__ = __;
     }
 
     //removed falsey values from an array
-    _.compact = function (array) {
+    __.compact = function (array) {
         var result = [];
         for(var i = 0; i < array.length; i++) {
             if (array[i]) {
@@ -52,7 +52,7 @@
     };
 
 	//removed values from the given array that match ===
-    _.difference = function (array) {
+    __.difference = function (array) {
         var result = [];
 
         //arguments looks like an array but is not one except for the length property,
@@ -68,7 +68,7 @@
     };
 
 	//similar to find but instead returns the index of the last match
-    _.findIndex = function (array, secondArgument) {
+    __.findIndex = function (array, secondArgument) {
 
         if (typeof secondArgument === 'function') {
             for (var i = 0; i < array.length; i++) {
@@ -105,7 +105,7 @@
     };
 
     //similar to find but instead returns the index of the first match
-    _.findLastIndex = function (array, secondArgument) {
+    __.findLastIndex = function (array, secondArgument) {
 
         if (typeof secondArgument === 'function') {
             for (var i = array.length - 1; i >= 0; i--) {
@@ -141,7 +141,7 @@
         return -1;
     };
 
-    _.first = function (array, secondArgument) {
+    __.first = function (array, secondArgument) {
 
         if (secondArgument === undefined) {
             if (array.length > 0) {
@@ -192,11 +192,11 @@
         }
     };
 
-    _.flatten = function (array, secondArgument) {
+    __.flatten = function (array, secondArgument) {
 
         var result = [];
         if (typeof secondArgument === 'string') {
-            var pluckedArray = _.pluck(array, secondArgument);
+            var pluckedArray = __.pluck(array, secondArgument);
             for(var i = 0; i < pluckedArray.length; i++) {
                 recursiveFlatten(pluckedArray[i], result, false);
             }
@@ -211,24 +211,24 @@
         }
     }
 
-    _.pluck = function(array, property) {
+    __.pluck = function(array, property) {
         var result = [];
         for(var i = 0; i < array.length; i++) {
-            if(_.has(array[i], property)) {
+            if(__.has(array[i], property)) {
                 result.push(array[i][property]);
             }
         }
         return result;
     }
 
-    _.has = function(object, key) {
+    __.has = function(object, key) {
         if(object !== null && object !== undefined) {
             return object.hasOwnProperty(key);
         }
         return false;
     }
 
-    _.indexOf = function (array, element, fromIndex) {
+    __.indexOf = function (array, element, fromIndex) {
         fromIndex = fromIndex || 0;
         if(fromIndex < array.length) {
             for(var i = fromIndex; i < array.length; i++) {
@@ -265,7 +265,7 @@
     // anonymous define() is called outside of a loader request.
     if (typeof define === 'function' && define.amd) {
         define('lowerdash', [], function() {
-            return _;
+            return __;
         });
     }
 
