@@ -208,8 +208,8 @@ describe('lowerdash', function () {
                 { 'name': 'fred',   'age': 40, 'pets': ['baby puss', 'dino'] }
             ];
 
-            xit('should pluck the property specified and then flatten the array', function () {
-                var result = _.flatten(characters);
+            it('should pluck the property specified and then flatten the array', function () {
+                var result = _.flatten(characters, 'pets');
                 expect(result).toEqual(['hoppy', 'baby puss', 'dino']);
             });
         });
