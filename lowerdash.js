@@ -192,15 +192,40 @@
         }
     };
 
-
-
-    _.flatten = function (array, shouldDoShallowFlattening) {
+    _.flatten = function (array, secondArgument) {
 
         var result = [];
+        if (typeof secondArgument === 'string') {
+            var pluckedArray = _.pluck(array, secondArgument);
+            for(var i = 0; i < pluckedArray.length; i++) {
+                recursiveFlatten(pluckedArray[i], result, false);
+            }
+            return result;
+        }
+        else {
+            var shouldDoShallowFlattening = secondArgument || false;
+            for(var i = 0; i < array.length; i++) {
+                recursiveFlatten(array[i], result, shouldDoShallowFlattening);
+            }
+            return result;
+        }
+    }
+
+    _.pluck = function(array, property) {
+        var result = [];
         for(var i = 0; i < array.length; i++) {
-            recursiveFlatten(array[i], result, shouldDoShallowFlattening);
+            if(_.has(array[i], property)) {
+                result.push(array[i][property]);
+            }
         }
         return result;
+    }
+
+    _.has = function(object, key) {
+        if(object !== null && object !== undefined) {
+            return object.hasOwnProperty(key);
+        }
+        return false;
     }
 
     function recursiveFlatten (element, result, shouldDoShallowFlattening) {

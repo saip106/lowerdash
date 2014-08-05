@@ -196,12 +196,33 @@ describe('lowerdash', function () {
             var result = _.flatten([1, [2], [3, [[4]]]], true);
             expect(result).toEqual([1, 2, 3, [[4]]]);
         });
-    });
 
-    describe('when flattening an array', function () {
         it('should do deep flattening', function () {
             var result = _.flatten([1, [2], [3, [[4]]]]);
             expect(result).toEqual([1, 2, 3, 4]);
+        });
+
+        describe('using pluck sytanx', function () {
+            var characters = [
+                { 'name': 'barney', 'age': 30, 'pets': ['hoppy'] },
+                { 'name': 'fred',   'age': 40, 'pets': ['baby puss', 'dino'] }
+            ];
+
+            xit('should pluck the property specified and then flatten the array', function () {
+                var result = _.flatten(characters);
+                expect(result).toEqual(['hoppy', 'baby puss', 'dino']);
+            });
+        });
+    });
+
+    describe('when plucking a field from array of objects', function () {
+        it('should return an array of field values for each object in the array', function () {
+            var characters = [
+                { 'name': 'barney', 'age': 30, 'pets': ['hoppy'] },
+                { 'name': 'fred',   'age': 40, 'pets': ['baby puss', 'dino'] }
+            ];
+            var result = _.pluck(characters, 'name');
+            expect(result).toEqual(['barney', 'fred']);
         });
     });
 });
