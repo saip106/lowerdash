@@ -228,10 +228,13 @@
         return false;
     }
 
-    _.indexOf = function (array, element) {
-        for(var i = 0; i < array.length; i++) {
-            if(array[i] === element) {
-                return i;
+    _.indexOf = function (array, element, fromIndex) {
+        fromIndex = fromIndex || 0;
+        if(fromIndex < array.length) {
+            for(var i = fromIndex; i < array.length; i++) {
+                if(array[i] === element) {
+                    return i;
+                }
             }
         }
         return -1;

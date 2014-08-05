@@ -250,5 +250,10 @@ describe('lowerdash', function () {
             var result = _.indexOf([1, 2, 3, 1, 2, 3], 2);
             expect(result).toEqual(1);
         });
+
+        it('should return the index of first match after from index specified', function () {
+            var result = _.indexOf([1, 2, 3, 1, 2, 3], 2, 3);
+            expect(result).toEqual(4);
+        });
     });
 });
