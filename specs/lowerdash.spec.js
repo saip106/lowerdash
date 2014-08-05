@@ -225,4 +225,23 @@ describe('lowerdash', function () {
             expect(result).toEqual(['barney', 'fred']);
         });
     });
+
+    describe('when checking to see if a field exists in an object', function () {
+        it('should check for the field on the object', function () {
+            var foo = {
+                'bar' : 'baz'
+            }
+            var result = _.has(foo, 'bar');
+            expect(result).toBeTruthy();
+        });
+
+        it('should not check for the field on the object prototype chain', function () {
+            var foo = {
+                'bar' : 'baz'
+            }
+            foo.__proto__.goofy = 'crazy';
+            var result = _.has(foo, 'goofy');
+            expect(result).toBeFalsy();
+        });
+    });
 });
