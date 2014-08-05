@@ -21,3 +21,9 @@ Setting up dev environment
 Running unit tests
 ------------------
 karma start .\karma.conf.js
+
+TODO
+----
+- binary search in indexOf
+- test null inputs
+- compare results with lodash
