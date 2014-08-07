@@ -263,4 +263,11 @@ describe('lowerdash', function () {
             });
         });
     });
+
+    describe('when doing intersection of two arrays', function () {
+        it('should return array with common elements', function () {
+            var result = __.intersection([1, 2, 3], [5, 2, 1, 4], [2, 1]);
+            expect(result).toEqual([1,2]);
+        });
+    });
 });
