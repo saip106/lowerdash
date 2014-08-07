@@ -245,7 +245,7 @@ describe('lowerdash', function () {
         });
     });
 
-    describe('when finding index of an object', function () {
+    describe('when finding index of an element', function () {
         it('should return the index of first occurrence', function () {
             var result = __.indexOf([1, 2, 3, 1, 2, 3], 2);
             expect(result).toEqual(1);
@@ -254,6 +254,13 @@ describe('lowerdash', function () {
         it('should return the index of first match after from index specified', function () {
             var result = __.indexOf([1, 2, 3, 1, 2, 3], 2, 3);
             expect(result).toEqual(4);
+        });
+
+        describe('in a sorted array', function () {
+            it('should return the index of first occurrence', function () {
+                var result = __.indexOf([1, 1, 2, 2, 3, 3], 2, true);
+                expect(result).toEqual(2);
+            });
         });
     });
 });

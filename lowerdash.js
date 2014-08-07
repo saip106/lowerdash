@@ -228,16 +228,45 @@
         return false;
     }
 
-    __.indexOf = function (array, element, fromIndex) {
-        fromIndex = fromIndex || 0;
-        if(fromIndex < array.length) {
-            for(var i = fromIndex; i < array.length; i++) {
-                if(array[i] === element) {
-                    return i;
+    __.indexOf = function (array, element, fromIndexOrShouldDoBinarySearch) {
+        if (typeof fromIndexOrShouldDoBinarySearch === 'boolean') {
+            if(fromIndexOrShouldDoBinarySearch === true) {
+                if(array.length > 2) {
+                    return doBinarySearch(array, element);
+                }
+                else {
+                    return __.indexOf(array, element);
                 }
             }
         }
+        else {
+            var fromIndex = fromIndexOrShouldDoBinarySearch || 0;
+            if(fromIndex < array.length) {
+                for(var i = fromIndex; i < array.length; i++) {
+                    if(array[i] === element) {
+                        return i;
+                    }
+                }
+            }
+        }
+
         return -1;
+    }
+
+    function doBinarySearch(array, element) {
+        var midIndex = array.length / 2;
+        if(array[midIndex] > element) {
+            return doBinarySearch(array.slice(0, midIndex), element);
+        }
+        if (array[midIndex] < element) {
+            return doBinarySearch(array.slice(midIndex + 1), element);
+        }
+        for(var i = midIndex -1 ; i > -1; i--) {
+            if(array[i] !== element) {
+                return i + 1;
+            }
+        }
+        return 0;
     }
 
     function recursiveFlatten (element, result, shouldDoShallowFlattening) {
