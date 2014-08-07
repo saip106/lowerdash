@@ -231,12 +231,10 @@
     __.indexOf = function (array, element, fromIndexOrShouldDoBinarySearch) {
         if (typeof fromIndexOrShouldDoBinarySearch === 'boolean') {
             if(fromIndexOrShouldDoBinarySearch === true) {
-                if(array.length > 2) {
-                    return doBinarySearch(array, element);
-                }
-                else {
-                    return __.indexOf(array, element);
-                }
+                return doBinarySearch(array, element);
+            }
+            else {
+                return __.indexOf(array, element);
             }
         }
         else {
@@ -249,12 +247,11 @@
                 }
             }
         }
-
         return -1;
     }
 
     function doBinarySearch(array, element) {
-        var midIndex = array.length / 2;
+        var midIndex = array.length / 2 | 0;
         if(array[midIndex] > element) {
             return doBinarySearch(array.slice(0, midIndex), element);
         }
