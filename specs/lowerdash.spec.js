@@ -321,4 +321,11 @@ describe('lowerdash', function () {
             });
         });
     });
+
+    describe('when finding last index of an element in an array', function () {
+        it('should find the last index of the matching element', function () {
+            var result = __.lastIndexOf([1, 2, 3, 1, 2, 3], 2);
+            expect(result).toEqual(4);
+        });
+    });
 });

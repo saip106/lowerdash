@@ -302,6 +302,15 @@
         return array[array.length - 1];
     }
 
+    __.lastIndexOf = function (array, element) {
+        for(var i = array.length -1; i > -1; i--) {
+            if(array[i] === element) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     //private function that does recursive intersection of more than two arrays
     function recursiveIntersection(argumentsArray) {
         if (argumentsArray.length === 2) {
