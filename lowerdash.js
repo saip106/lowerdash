@@ -302,13 +302,24 @@
         return array[array.length - 1];
     }
 
-    __.lastIndexOf = function (array, element) {
+    __.lastIndexOf = function (array, element, fromIndex) {
+        var result = -1;
         for(var i = array.length -1; i > -1; i--) {
             if(array[i] === element) {
-                return i;
+                result = i;
+                break;
             }
         }
-        return -1;
+        if (typeof fromIndex === 'number') {
+
+            if(fromIndex > array.length || result < fromIndex) {
+                result = -1;
+            }
+            else {
+                result = result - fromIndex;
+            }
+        }
+        return result;
     }
 
     //private function that does recursive intersection of more than two arrays

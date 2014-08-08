@@ -327,5 +327,10 @@ describe('lowerdash', function () {
             var result = __.lastIndexOf([1, 2, 3, 1, 2, 3], 2);
             expect(result).toEqual(4);
         });
+
+        it('should find the last index of the element after given index', function () {
+            var result = __.lastIndexOf([1, 2, 3, 1, 2, 3], 2, 3);
+            expect(result).toEqual(1);
+        });
     });
 });
