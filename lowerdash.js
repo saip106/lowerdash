@@ -240,7 +240,15 @@
         }
     };
 
-    __.last = function (array) {
+    __.last = function (array, secondArgument) {
+        if(typeof secondArgument === 'number') {
+            var result = [];
+            for(var i = array.length - secondArgument; i < array.length; i++) {
+                result.push(array[i]);
+            }
+            return result;
+        }
+
         return array[array.length - 1];
     }
 

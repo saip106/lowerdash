@@ -277,4 +277,11 @@ describe('lowerdash', function () {
             expect(result).toEqual(3);
         });
     });
+
+    describe('when getting last n elements of an array', function () {
+        it('should get last n elements', function () {
+            var result = __.last([1, 2, 3], 2);
+            expect(result).toEqual([2,3]);
+        });
+    });
 });
