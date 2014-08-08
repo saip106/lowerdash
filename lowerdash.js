@@ -250,17 +250,42 @@
         return -1;
     }
 
-    __.intersection = function (array1, array2) {
+    __.intersection = function () {
+        if (arguments.length === 1) {
+            return argumentsArray[0];
+        }
+        else if(arguments.length > 1) {
+            var argumentsArray = Array.prototype.slice.call(arguments, 0);
+            return recursiveIntersection(argumentsArray);
+        }
+    };
+
+    function recursiveIntersection(argumentsArray) {
+        if (argumentsArray.length === 2) {
+            return intersectionOfTwoArrays(argumentsArray);
+        }
+
+        if (argumentsArray.length > 2) {
+            var resultOfFirstTwoElements = intersectionOfTwoArrays(argumentsArray.slice(0, 2));
+            return recursiveIntersection(argumentsArray.splice(0, 2, resultOfFirstTwoElements));
+        }
+    }
+
+    function intersectionOfTwoArrays(argumentsArray) {
+        var array1 = argumentsArray[0];
+        var array2 = argumentsArray[1];
         var result = [];
         for(var i = 0; i < array1.length; i++) {
-            for(var j = 0; j < array2.length; j++) {
-                if (array1[i] === array2[j] && result.indexOf(array1[i]) === -1) {
-                    result.push(array1[i]);
+            if (__.indexOf(result, array1[i]) === -1) {
+                for(var j = 0; j < array2.length; j++) {
+                    if (array1[i] === array2[j]) {
+                        result.push(array1[i]);
+                    }
                 }
             }
         }
         return result;
-    };
+    }
 
     function doBinarySearch(array, element) {
         var midIndex = array.length / 2 | 0;
