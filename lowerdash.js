@@ -1,21 +1,21 @@
-'use strict'
+'use strict';
 
-;(function () {
+(function () {
 
     // Establish the root object, `window` in the browser, or `exports` on the server.
     var root = this;
 
     var __ = function () {};
 
-    // Export the Underscore object for **Node.js**, with
-    // backwards-compatibility for the old `require()` API. If we're in
-    // the browser, add `__` as a global object.
+    // Export the Underscore object for **Node.js**, with backwards-compatibility for the old `require()` API.
+    // If we're in the browser, add `__` as a global object.
     if (typeof exports !== 'undefined') {
         if (typeof module !== 'undefined' && module.exports) {
             exports = module.exports = __;
         }
         exports.__ = __;
-    } else {
+    }
+    else {
         root.__ = __;
     }
 
@@ -32,9 +32,11 @@
 
     //IE8 and older do not contain indexOf hence this
     var indexOf = function(needle) {
-        if(typeof Array.prototype.indexOf === 'function') {
+
+        if (typeof Array.prototype.indexOf === 'function') {
             indexOf = Array.prototype.indexOf;
-        } else {
+        }
+        else {
             indexOf = function(needle) {
                 var index = -1;
 
@@ -250,21 +252,22 @@
         return -1;
     }
 
+    //returns the common elements in an array
     __.intersection = function () {
         if (arguments.length === 1) {
             return argumentsArray[0];
         }
-        else if(arguments.length > 1) {
+        if(arguments.length > 1) {
             var argumentsArray = Array.prototype.slice.call(arguments, 0);
             return recursiveIntersection(argumentsArray);
         }
     };
 
+    //private function that does recursive intersection of more than two arrays
     function recursiveIntersection(argumentsArray) {
         if (argumentsArray.length === 2) {
             return intersectionOfTwoArrays(argumentsArray);
         }
-
         if (argumentsArray.length > 2) {
             var resultOfFirstTwoElements = intersectionOfTwoArrays(argumentsArray.slice(0, 2));
             return recursiveIntersection(argumentsArray.splice(0, 2, resultOfFirstTwoElements));
