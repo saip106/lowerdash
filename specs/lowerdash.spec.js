@@ -333,4 +333,11 @@ describe('lowerdash', function () {
             expect(result).toEqual(1);
         });
     });
+
+    describe('when pulling given values from an array', function () {
+        it('should remove the given values from the array', function () {
+            var result = __.pull([1, 2, 3, 1, 2, 3], 2, 3);
+            expect(result).toEqual([1,1]);
+        });
+    });
 });

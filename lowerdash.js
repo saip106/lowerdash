@@ -322,6 +322,19 @@
         return result;
     }
 
+    __.pull = function (array) {
+        if(arguments.length > 1) {
+            for(var i = 1; i < arguments.length; i++) {
+                var indexToRemove = array.indexOf(arguments[i]);
+                while (indexToRemove !== -1) {
+                    array.splice(indexToRemove, 1);
+                    indexToRemove = array.indexOf(arguments[i]);
+                }
+            }
+        }
+        return array;
+    }
+
     //private function that does recursive intersection of more than two arrays
     function recursiveIntersection(argumentsArray) {
         if (argumentsArray.length === 2) {
