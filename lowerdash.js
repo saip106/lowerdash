@@ -262,9 +262,10 @@
         if(typeOfSecondArgument === 'string') {
             var result = [];
             for (var i = array.length - 1; i > -1; i--) {
-                if (array[i][secondArgument] === true) {
-                    result.push(array[i]);
+                if (array[i][secondArgument] !== true) {
+                    break;
                 }
+                result.push(array[i]);
             }
             return result.reverse();
         }
@@ -276,6 +277,23 @@
                     break;
                 }
                 result.push(array[i]);
+            }
+            return result.reverse();
+        }
+
+        if(typeOfSecondArgument === 'object') {
+            var result = [];
+            for (var i = array.length - 1; i > -1; i--) {
+                var isAMatch = true;
+                for (var key in secondArgument) {
+                    if (array[i][key] !== secondArgument[key]) {
+                        isAMatch = false;
+                        break;
+                    }
+                }
+                if (isAMatch) {
+                    result.push(array[i]);
+                }
             }
             return result.reverse();
         }

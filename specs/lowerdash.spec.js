@@ -301,11 +301,23 @@ describe('lowerdash', function () {
         });
 
         describe('and the second element is a function', function () {
-            it('should return last n elements that satify the function', function () {
+            it('should return last n elements that satisfy the function', function () {
                 var result = __.last([1, 2, 3], function(num) {
                     return num > 1;
                 });
                 expect(result).toEqual([2,3]);
+            });
+        });
+
+        describe('and the second element is a object', function () {
+            it('should return last n elements that satisfy all the object fields', function () {
+                var characters = [
+                    { 'name': 'barney',  'blocked': false, 'employer': 'slate' },
+                    { 'name': 'fred',    'blocked': true,  'employer': 'slate' },
+                    { 'name': 'pebbles', 'blocked': true,  'employer': 'na' }
+                ];
+                var result = __.last(characters, { 'employer': 'na' });
+                expect(result).toEqual([{ 'name': 'pebbles', 'blocked': true, 'employer': 'na' }]);
             });
         });
     });
