@@ -270,4 +270,11 @@ describe('lowerdash', function () {
             expect(result).toEqual([1,2]);
         });
     });
+
+    describe('when getting last of an array', function () {
+        it('should get the last element of the array by default', function () {
+            var result = __.last([1, 2, 3]);
+            expect(result).toEqual(3);
+        });
+    });
 });

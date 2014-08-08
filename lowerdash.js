@@ -30,30 +30,7 @@
         return result;
     };
 
-    //IE8 and older do not contain indexOf hence this
-    var indexOf = function(needle) {
-
-        if (typeof Array.prototype.indexOf === 'function') {
-            indexOf = Array.prototype.indexOf;
-        }
-        else {
-            indexOf = function(needle) {
-                var index = -1;
-
-                for(var i = 0; i < this.length; i++) {
-                    if(this[i] === needle) {
-                        index = i;
-                        break;
-                    }
-                }
-
-                return index;
-            };
-        }
-        return indexOf.call(this, needle);
-    };
-
-	//removed values from the given array that match ===
+    //removed values from the given array that match ===
     __.difference = function (array) {
         var result = [];
 
@@ -263,6 +240,10 @@
         }
     };
 
+    __.last = function (array) {
+        return array[array.length - 1];
+    }
+
     //private function that does recursive intersection of more than two arrays
     function recursiveIntersection(argumentsArray) {
         if (argumentsArray.length === 2) {
@@ -321,6 +302,29 @@
             result.push(element);
         }
     }
+
+    //IE8 and older do not contain indexOf hence this
+    var indexOf = function(needle) {
+
+        if (typeof Array.prototype.indexOf === 'function') {
+            indexOf = Array.prototype.indexOf;
+        }
+        else {
+            indexOf = function(needle) {
+                var index = -1;
+
+                for(var i = 0; i < this.length; i++) {
+                    if(this[i] === needle) {
+                        index = i;
+                        break;
+                    }
+                }
+
+                return index;
+            };
+        }
+        return indexOf.call(this, needle);
+    };
 
     // AMD registration happens at the end for compatibility with AMD loaders
     // that may not enforce next-turn semantics on modules. Even though general
