@@ -284,4 +284,21 @@ describe('lowerdash', function () {
             expect(result).toEqual([2,3]);
         });
     });
+
+    describe('when getting last n matching elements', function () {
+        describe('and the second element is a field name', function () {
+            it('should last n elements for which the listed field value is true', function () {
+                var characters = [
+                    { 'name': 'barney',  'blocked': false, 'employer': 'slate' },
+                    { 'name': 'fred',    'blocked': true,  'employer': 'slate' },
+                    { 'name': 'pebbles', 'blocked': true,  'employer': 'na' }
+                ];
+
+                // using "_.pluck" callback shorthand
+                var result = __.pluck(__.last(characters, 'blocked'), 'name');
+                expect(result).toEqual(['fred', 'pebbles']);
+            });
+        });
+
+    });
 });

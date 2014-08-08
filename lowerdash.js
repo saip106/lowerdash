@@ -241,7 +241,17 @@
     };
 
     __.last = function (array, secondArgument) {
-        if(typeof secondArgument === 'number') {
+
+        if(array.length <= 0) {
+            return undefined;
+        }
+
+        var typeOfSecondArgument = typeof secondArgument;
+        if(typeOfSecondArgument === 'number') {
+            if(secondArgument >= array.length) {
+                return array;
+            }
+
             var result = [];
             for(var i = array.length - secondArgument; i < array.length; i++) {
                 result.push(array[i]);
@@ -249,6 +259,28 @@
             return result;
         }
 
+        if(typeOfSecondArgument === 'string') {
+            var result = [];
+            for (var i = array.length - 1; i > -1; i--) {
+                if (array[i][secondArgument] === true) {
+                    result.push(array[i]);
+                }
+            }
+            return result.reverse();
+        }
+
+        if(typeOfSecondArgument === 'function') {
+            var result = [];
+            for (var i = array.length - 1; i > -1; i--) {
+                if (secondArgument(array[i]) !== true) {
+                    break;
+                }
+                result.push(array[i]);
+            }
+            return result.reverse();
+        }
+
+        //default is just returning the last element
         return array[array.length - 1];
     }
 
