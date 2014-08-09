@@ -1,5 +1,11 @@
 'use strict';
 
-task('default', function () {
-    console.log('default task');
+task('default', ['test'], function () {
+
+});
+
+task('test', [], function (params) {
+    jake.exec(['karma start'], { printStdout: true }, function () {
+        complete();
+    });
 });
