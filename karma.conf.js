@@ -22,7 +22,7 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-        'jakefile.js'
+        'gulpfile.js'
     ],
 
 
@@ -62,6 +62,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: true
   });
 };
