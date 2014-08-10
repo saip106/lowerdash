@@ -1,14 +1,13 @@
 /*jshint node:true*/
-
 'use strict';
 
 var gulp = require('gulp');
 var karma = require('gulp-karma');
 var jshint = require('gulp-jshint');
 
-gulp.task('default', []);
+gulp.task('default', ['test']);
 
-gulp.task('test', function () {
+gulp.task('testOnce', ['lint'], function () {
     gulp.src(['*.js', '**/*.spec.js'])
         .pipe(karma({
             configFile: 'karma.conf.js',
@@ -19,7 +18,7 @@ gulp.task('test', function () {
         });
 });
 
-gulp.task('watch', function () {
+gulp.task('test', ['lint'], function () {
     gulp.src(['*.js', '**/*.spec.js'])
         .pipe(karma({
             configFile: 'karma.conf.js',
@@ -32,3 +31,9 @@ gulp.task('lint', function () {
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
+
+gulp.task('watch', function () {
+    gulp.watch('**/*.spec.js', ['test']);
+    gulp.watch('*.js', ['test']);
+});
+
