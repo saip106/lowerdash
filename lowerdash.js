@@ -133,8 +133,9 @@
             var numberResult = [];
             if (array.length > 0) {
                 for (var j = 0; j < secondArgument; j++) {
-                    if (array.length > j)
-                    numberResult.push(array[j]);
+                    if (array.length > j) {
+                        numberResult.push(array[j]);
+                    }
                 }
                 return numberResult;
             }
@@ -234,7 +235,7 @@
     //returns the common elements in an array
     __.intersection = function () {
         if (arguments.length === 1) {
-            return argumentsArray[0];
+            return arguments[0];
         }
         if(arguments.length > 1) {
             var argumentsArray = Array.prototype.slice.call(arguments, 0);
@@ -365,7 +366,7 @@
     }
 
     function doBinarySearch(array, element) {
-        var midIndex = array.length / 2 | 0;
+        var midIndex = array.length / 2 || 0;
         if(array[midIndex] > element) {
             return doBinarySearch(array.slice(0, midIndex), element);
         }
