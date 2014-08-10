@@ -1,7 +1,10 @@
+/*jshint node:true*/
+
 'use strict';
 
 var gulp = require('gulp');
 var karma = require('gulp-karma');
+var jshint = require('gulp-jshint');
 
 gulp.task('default', []);
 
@@ -9,10 +12,23 @@ gulp.task('test', function () {
     gulp.src(['*.js', '**/*.spec.js'])
         .pipe(karma({
             configFile: 'karma.conf.js',
-            action: 'watch'
+            action: 'run'
         }))
         .on('error', function(err) {
-            // Make sure failed tests cause gulp to exit non-zero
             throw err;
         });
+});
+
+gulp.task('watch', function () {
+    gulp.src(['*.js', '**/*.spec.js'])
+        .pipe(karma({
+            configFile: 'karma.conf.js',
+            action: 'watch'
+        }));
+});
+
+gulp.task('lint', function () {
+    gulp.src(['*.js', '!karma.conf.js'])
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
 });

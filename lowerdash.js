@@ -1,6 +1,8 @@
-'use strict';
+/*jslint node: true */
+/*global define*/
 
 (function () {
+    'use strict';
 
     // Establish the root object, `window` in the browser, or `exports` on the server.
     var root = this;
@@ -57,11 +59,11 @@
             }
         }
         else if (typeof secondArgument === 'object') {
-            for (var i = 0; i < array.length; i++) {
+            for (var j = 0; j < array.length; j++) {
                 var isValidForAllProperties = false;
                 for (var property in secondArgument) {
-                    if (secondArgument.hasOwnProperty(property) && array[i][property] === secondArgument[property]) {
-                        isValidForAllProperties = true
+                    if (secondArgument.hasOwnProperty(property) && array[j][property] === secondArgument[property]) {
+                        isValidForAllProperties = true;
                     }
                     else {
                         isValidForAllProperties = false;
@@ -69,14 +71,14 @@
                     }
                 }
                 if (isValidForAllProperties) {
-                    return i;
+                    return j;
                 }
             }
         }
         else if (typeof secondArgument === 'string') {
-            for (var i = 0; i < array.length; i++) {
-                if (array[i][secondArgument]) {
-                    return i;
+            for (var k = 0; k < array.length; k++) {
+                if (array[k][secondArgument]) {
+                    return k;
                 }
             }
         }
@@ -94,11 +96,11 @@
             }
         }
         else if (typeof secondArgument === 'object') {
-            for (var i = array.length - 1; i >= 0; i--) {
+            for (var j = array.length - 1; j >= 0; j--) {
                 var isValidForAllProperties = false;
                 for (var property in secondArgument) {
-                    if (secondArgument.hasOwnProperty(property) && array[i][property] === secondArgument[property]) {
-                        isValidForAllProperties = true
+                    if (secondArgument.hasOwnProperty(property) && array[j][property] === secondArgument[property]) {
+                        isValidForAllProperties = true;
                     }
                     else {
                         isValidForAllProperties = false;
@@ -106,14 +108,14 @@
                     }
                 }
                 if (isValidForAllProperties) {
-                    return i;
+                    return j;
                 }
             }
         }
         else if (typeof secondArgument === 'string') {
-            for (var i = array.length - 1; i >= 0; i--) {
-                if (array[i][secondArgument]) {
-                    return i;
+            for (var k = array.length - 1; k >= 0; k--) {
+                if (array[k][secondArgument]) {
+                    return k;
                 }
             }
         }
@@ -128,44 +130,44 @@
             }
         }
         else if (typeof secondArgument === 'number') {
-            var result = [];
+            var numberResult = [];
             if (array.length > 0) {
                 for (var j = 0; j < secondArgument; j++) {
                     if (array.length > j)
-                    result.push(array[j]);
+                    numberResult.push(array[j]);
                 }
-                return result;
+                return numberResult;
             }
         }
         else if (typeof secondArgument === 'function') {
-            var result = [];
+            var functionResult = [];
             for (var i = 0; i < array.length; i++) {
                 if (secondArgument(array[i])) {
-                    result.push(array[i]);
+                    functionResult.push(array[i]);
                 }
                 else {
-                    return result;
+                    return functionResult;
                 }
             }
-            return result;
+            return functionResult;
         }
         else if (typeof secondArgument === 'string') {
-            for (var i = 0; i < array.length; i++) {
-                if (array[i][secondArgument] === true) {
-                    return array[i];
+            for (var k = 0; k < array.length; k++) {
+                if (array[k][secondArgument] === true) {
+                    return array[k];
                 }
             }
         }
         else if (typeof secondArgument === 'object') {
-            for (var i = 0; i < array.length; i++) {
+            for (var m = 0; m < array.length; m++) {
                 var isAMatch = true;
                 for (var key in secondArgument) {
-                    if (array[i][key] !== secondArgument[key]) {
+                    if (array[m][key] !== secondArgument[key]) {
                         isAMatch = false;
                     }
                 }
                 if (isAMatch) {
-                    return array[i];
+                    return array[m];
                 }
             }
         }
@@ -183,12 +185,12 @@
         }
         else {
             var shouldDoShallowFlattening = secondArgument || false;
-            for(var i = 0; i < array.length; i++) {
-                recursiveFlatten(array[i], result, shouldDoShallowFlattening);
+            for(var j = 0; j < array.length; j++) {
+                recursiveFlatten(array[j], result, shouldDoShallowFlattening);
             }
             return result;
         }
-    }
+    };
 
     __.pluck = function(array, property) {
         var result = [];
@@ -198,14 +200,14 @@
             }
         }
         return result;
-    }
+    };
 
     __.has = function(object, key) {
         if(object !== null && object !== undefined) {
             return object.hasOwnProperty(key);
         }
         return false;
-    }
+    };
 
     __.indexOf = function (array, element, fromIndexOrShouldDoBinarySearch) {
         if (typeof fromIndexOrShouldDoBinarySearch === 'boolean') {
@@ -227,7 +229,7 @@
             }
         }
         return -1;
-    }
+    };
 
     //returns the common elements in an array
     __.intersection = function () {
@@ -252,55 +254,55 @@
                 return array;
             }
 
-            var result = [];
+            var numberResult = [];
             for(var i = array.length - secondArgument; i < array.length; i++) {
-                result.push(array[i]);
+                numberResult.push(array[i]);
             }
-            return result;
+            return numberResult;
         }
 
         if(typeOfSecondArgument === 'string') {
-            var result = [];
-            for (var i = array.length - 1; i > -1; i--) {
-                if (array[i][secondArgument] !== true) {
+            var stringResult = [];
+            for (var j = array.length - 1; j > -1; j--) {
+                if (array[j][secondArgument] !== true) {
                     break;
                 }
-                result.push(array[i]);
+                stringResult.push(array[j]);
             }
-            return result.reverse();
+            return stringResult.reverse();
         }
 
         if(typeOfSecondArgument === 'function') {
-            var result = [];
-            for (var i = array.length - 1; i > -1; i--) {
-                if (secondArgument(array[i]) !== true) {
+            var functionResult = [];
+            for (var k = array.length - 1; k > -1; k--) {
+                if (secondArgument(array[k]) !== true) {
                     break;
                 }
-                result.push(array[i]);
+                functionResult.push(array[k]);
             }
-            return result.reverse();
+            return functionResult.reverse();
         }
 
         if(typeOfSecondArgument === 'object') {
-            var result = [];
-            for (var i = array.length - 1; i > -1; i--) {
+            var objectResult = [];
+            for (var x = array.length - 1; x > -1; x--) {
                 var isAMatch = true;
                 for (var key in secondArgument) {
-                    if (array[i][key] !== secondArgument[key]) {
+                    if (array[x][key] !== secondArgument[key]) {
                         isAMatch = false;
                         break;
                     }
                 }
                 if (isAMatch) {
-                    result.push(array[i]);
+                    objectResult.push(array[x]);
                 }
             }
-            return result.reverse();
+            return objectResult.reverse();
         }
 
         //default is just returning the last element
         return array[array.length - 1];
-    }
+    };
 
     __.lastIndexOf = function (array, element, fromIndex) {
         var result = -1;
@@ -320,7 +322,7 @@
             }
         }
         return result;
-    }
+    };
 
     __.pull = function (array) {
         if(arguments.length > 1) {
@@ -333,7 +335,7 @@
             }
         }
         return array;
-    }
+    };
 
     //private function that does recursive intersection of more than two arrays
     function recursiveIntersection(argumentsArray) {
