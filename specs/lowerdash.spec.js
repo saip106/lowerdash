@@ -6,7 +6,7 @@ describe('lowerdash', function () {
         it('should be defined', function () {
             expect(__).toBeDefined();
         });
-    });
+    })
 
     describe('when compacting an array', function () {
         it('should remove falsey values from the array', function () {
@@ -271,14 +271,14 @@ describe('lowerdash', function () {
         });
     });
 
-    describe('when getting last of an array', function () {
+    describe('when getting last match in an array', function () {
         it('should get the last element of the array by default', function () {
             var result = __.last([1, 2, 3]);
             expect(result).toEqual(3);
         });
     });
 
-    describe('when getting last n elements of an array', function () {
+    describe('when getting last n matching elements in an array', function () {
         it('should get last n elements', function () {
             var result = __.last([1, 2, 3], 2);
             expect(result).toEqual([2,3]);
