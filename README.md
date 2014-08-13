@@ -1,7 +1,7 @@
 lowerdash
 =========
 
-My attempt at replicating the lowdash.js library. 
+My attempt at replicating the lodash.js library. 
 This is more of an excuse for me to get familiar with js, testing in js, jasmine and karma.
 Please feel free to review my code and offer suggestions/improvements. Pulls requests are always welcome.
 
@@ -20,10 +20,10 @@ Setting up dev environment
 
 Running unit tests
 ------------------
-karma start .\karma.conf.js
+gulp test (recommended way)
+karma start .\karma.conf.js (if you want to directly use karma)
 
 TODO
 ----
-- binary search in indexOf
 - test null inputs
 - compare results with lodash
